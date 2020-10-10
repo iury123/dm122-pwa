@@ -2,70 +2,70 @@ const DONE = 'done';
 
 export default class HtmlService {
 
-  constructor(todoService) {
-    this.todoService = todoService;
+  constructor(carService) {
+    this.carService = carService;
     this.bindFormEvent();
-    this.listTasks();
+    this.listCars();
   }
 
   bindFormEvent() {
     const form = document.querySelector('form');
     form.addEventListener('submit', event => {
       event.preventDefault();
-      this.addTask(form.item.value);
+      this.addCar(form.item.value);
       form.reset();
     })
   }
 
-  async addTask(description) {
-    const task = { description, done: false };
-    const taskId = await this.todoService.save(task);
-    task.id = taskId;
-    this.addToHtmlList(task);
+  async addCar(description) {
+    const car = { description, done: false };
+    const carId = await this.carService.save(car);
+    car.id = carId;
+    this.addToHtmlList(car);
   }
 
-  async listTasks() {
-    const tasks = await this.todoService.getAll();
-    tasks.forEach(task => this.addToHtmlList(task));
+  async listCars() {
+    const cars = await this.carService.getAll();
+    cars.forEach(car => this.addToHtmlList(car));
   }
 
-  async saveTask(taskId, isDone) {
-    const task = await this.todoService.get(taskId);
-    task.done = isDone;
-    this.todoService.save(task);
+  async saveCar(carId, isDone) {
+    const car = await this.carService.get(carId);
+    car.done = isDone;
+    this.carService.save(car);
   }
 
-  toggleTask(li) {
-    const taskId = +li.getAttribute('data-item-id');
+  toggleCar(li) {
+    const carId = +li.getAttribute('data-item-id');
     li.classList.toggle(DONE);
     const isDone = li.classList.contains(DONE);
-    this.saveTask(taskId, isDone);
+    this.saveCar(carId, isDone);
   }
 
-  async deleteTask(li) {
-    const taskId = +li.getAttribute('data-item-id');
-    await this.todoService.delete(taskId);
+  async deleteCar(li) {
+    const carId = +li.getAttribute('data-item-id');
+    await this.carService.delete(carId);
     li.remove();
   }
 
-  addToHtmlList(task) {
+  addToHtmlList(car) {
     const ul = document.querySelector('ul');
     const li = document.createElement('li');
     const span = document.createElement('span');
     const button = document.createElement('button');
 
-    li.setAttribute('data-item-id', task.id);
-    li.addEventListener('click', () => this.toggleTask(li));
+    li.setAttribute('data-item-id', car.id);
+    li.addEventListener('click', () => this.toggleCar(li));
 
-    span.textContent = task.description;
+    span.textContent = car.description;
 
     button.textContent = 'x';
     button.addEventListener('click', event => {
       event.stopPropagation();
-      this.deleteTask(li);
+      this.deleteCar(li);
     });
 
-    if (task.done) {
+    if (car.done) {
       li.classList.add(DONE);
     }
 

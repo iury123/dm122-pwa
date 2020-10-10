@@ -1,5 +1,5 @@
 import HtmlService from './HtmlService.js';
-import TodoService from './TodoService.js';
+import CarService from './CarService.js';
 
 class App {
 
@@ -9,8 +9,8 @@ class App {
   }
 
   start() {
-    const todoService = new TodoService();
-    new HtmlService(todoService);
+    const carService = new CarService();
+    new HtmlService(carService);
   }
 
   registerServiceWorker() {

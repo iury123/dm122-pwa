@@ -8,7 +8,7 @@ const assetsToCache = [
   'https://cdn.jsdelivr.net/npm/dexie@3.0.2/dist/dexie.mjs',
   './assets/js/material.min.js',
   './assets/css/style.css',
-  './assets/js/TodoService.js',
+  './assets/js/CarService.js',
   './assets/js/HtmlService.js',
   './assets/js/app.js',
   './favicon.ico',
