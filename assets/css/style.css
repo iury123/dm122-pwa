@@ -41,3 +41,26 @@ li > button {
 .done > span {
   text-decoration: line-through;
 }
+
+li > span {
+  margin-right: 15px;
+}
+
+
+#add-car  {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: blueviolet;
+  color: white;
+  right: 10px;
+  bottom: 10px;
+  z-index: 20;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+
+}
+
+main > ul {
+  margin-bottom: 70px;
+}

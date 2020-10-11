@@ -17,9 +17,26 @@ export default class CarService {
 
         db.on('populate', async () => {
             await db.cars.bulkPut([
-                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'black', maxSpeed: 200 },
-                { name: 'Golf', manufacturer: 'Volkswagen', year: 1995, color: 'red', maxSpeed: 230 },
-                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'white', maxSpeed: 200 },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Preto' },
+                { name: 'Golf', manufacturer: 'Volkswagen', year: 1995, color: 'Vermelho' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
             ]);
         });
     }

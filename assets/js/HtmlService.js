@@ -6,6 +6,8 @@ export default class HtmlService {
     this.carService = carService;
     this.bindFormEvent();
     this.listCars();
+    const btnAdd = document.getElementById("add-car");
+    btnAdd.addEventListener('click', () => console.log("HAHAHA"));
   }
 
   bindFormEvent() {
@@ -51,13 +53,21 @@ export default class HtmlService {
   addToHtmlList(car) {
     const ul = document.querySelector('ul');
     const li = document.createElement('li');
-    const span = document.createElement('span');
+    // const span = document.createElement('span');
+    const nameSpan = document.createElement('span');
+    const manufacturerSpan = document.createElement('span');
+    const colorSpan = document.createElement('span');
+    const yearSpan = document.createElement('span');
     const button = document.createElement('button');
 
     li.setAttribute('data-item-id', car.id);
     li.addEventListener('click', () => this.toggleCar(li));
 
-    span.textContent = car.description;
+
+    nameSpan.textContent = `${car.name}`;
+    manufacturerSpan.textContent = `${car.manufacturer}`;
+    colorSpan.textContent = `${car.color}`;
+    yearSpan.textContent = `${car.year}`;
 
     button.textContent = 'x';
     button.addEventListener('click', event => {
@@ -69,7 +79,10 @@ export default class HtmlService {
       li.classList.add(DONE);
     }
 
-    li.appendChild(span);
+    li.appendChild(nameSpan);
+    li.appendChild(manufacturerSpan);
+    li.appendChild(colorSpan);
+    li.appendChild(yearSpan);
     li.appendChild(button);
     ul.appendChild(li);
   }

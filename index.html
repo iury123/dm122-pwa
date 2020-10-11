@@ -18,23 +18,24 @@
 <body>
   <div id="app">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
+      <header class="mdl-layout__header" style="background-color: blueviolet;">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">PWA - Todo List</span>
+          <span class="mdl-layout-title">PWA - Car List</span>
         </div>
       </header>
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">PWA - Todo List</span>
+        <span class="mdl-layout-title">PWA - Car List</span>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="/">About</a>
         </nav>
       </div>
       <main class="mdl-layout__content mat-typography" style="text-align: center">
-        <form>
+        <form style="display: none;">
           <input type="text" name="item" placeholder="Type something" autofocus="" required="" autocomplete="off">
         </form>
         <ul></ul>
+        <button id="add-car">Add</button>
       </main>
     </div>
   </div>
