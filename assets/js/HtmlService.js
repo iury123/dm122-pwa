@@ -1,31 +1,55 @@
-const DONE = 'done';
 
 export default class HtmlService {
 
-  constructor(carService) {
-    this.carService = carService;
-    this.bindFormEvent();
-    this.listCars();
-    const btnAdd = document.getElementById("add-car");
-    if (btnAdd) {
-      btnAdd.addEventListener('click', () => console.log("HAHAHA"));
+  get carToBeEdited() {
+    return JSON.parse(localStorage.getItem('carToBeEdited'));
+  }
+
+  set carToBeEdited(car) {
+    if (car) {
+      localStorage.setItem('carToBeEdited', JSON.stringify(car));
+    } else {
+      localStorage.removeItem('carToBeEdited');
     }
   }
 
-  bindFormEvent() {
+  constructor(carService) {
+    this.carService = carService;
+    this.listCars();
+
     const form = document.querySelector('form');
-    form?.addEventListener('submit', event => {
-      event.preventDefault();
-      this.addCar(form.item.value);
-      form.reset();
-    })
+    if (form && this.carToBeEdited) {
+      form.carName.value = this.carToBeEdited.name;
+      form.manufacturer.value = this.carToBeEdited.manufacturer;
+      form.color.value = this.carToBeEdited.color;
+      form.year.value = this.carToBeEdited.year;
+    }
+
+    const btnAdd = document.getElementById("add-car");
+    btnAdd?.addEventListener('click', () => {
+      this.carToBeEdited = undefined;
+      window.location.href = './carForm.html';
+    });
+
+    const saveBtn = document.getElementById("save-btn");
+    saveBtn?.addEventListener('click', () => {
+      const form = document.querySelector('form');
+      const car = {
+        name: form.carName.value,
+        manufacturer: form.manufacturer.value,
+        color: form.color.value,
+        year: form.year.value
+      };
+      if (this.carToBeEdited) {
+        car.id = this.carToBeEdited.id;
+      }
+      this.saveCar(car);
+    });
   }
 
-  async addCar(description) {
-    const car = { description, done: false };
-    const carId = await this.carService.save(car);
-    car.id = carId;
-    this.addToHtmlList(car);
+  async saveCar(car) {
+    await this.carService.save(car);
+    window.location.href = './index.html';
   }
 
   async listCars() {
@@ -33,18 +57,10 @@ export default class HtmlService {
     cars.forEach(car => this.addToHtmlList(car));
   }
 
-  async saveCar(carId, isDone) {
-    const car = await this.carService.get(carId);
-    car.done = isDone;
-    this.carService.save(car);
-  }
-
-  toggleCar(li) {
+  async editCar(li) {
+    const carId = +li?.getAttribute('data-item-id');
+    this.carToBeEdited = await this.carService.get(carId);
     window.location.href = './carForm.html';
-    // const carId = +li?.getAttribute('data-item-id');
-    // li?.classList.toggle(DONE);
-    // const isDone = li?.classList.contains(DONE);
-    // this.saveCar(carId, isDone);
   }
 
   async deleteCar(li) {
@@ -63,8 +79,7 @@ export default class HtmlService {
     const button = document.createElement('button');
 
     li?.setAttribute('data-item-id', car.id);
-    li?.addEventListener('click', () => this.toggleCar(li));
-
+    li?.addEventListener('click', () => this.editCar(li));
 
     nameSpan.textContent = `${car.id} ${car.name}`;
     manufacturerSpan.textContent = `${car.manufacturer}`;
