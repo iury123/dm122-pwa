@@ -28,7 +28,13 @@ export default class HtmlService {
     const btnAdd = document.getElementById("add-car");
     btnAdd?.addEventListener('click', () => {
       this.carToBeEdited = undefined;
-      window.location.href = './carForm.html';
+      window.location.href = "carForm.html";
+    });
+
+
+    const backBtn = document.getElementById("back-btn");
+    backBtn?.addEventListener('click', () => {
+      setTimeout(() => window.history.back(), 1);
     });
 
     const saveBtn = document.getElementById("save-btn");
@@ -48,8 +54,8 @@ export default class HtmlService {
   }
 
   async saveCar(car) {
-    await this.carService.save(car);
-    window.location.href = './index.html';
+    this.carService.save(car);
+    setTimeout(() => window.history.back(), 1);
   }
 
   async listCars() {
@@ -60,7 +66,7 @@ export default class HtmlService {
   async editCar(li) {
     const carId = +li?.getAttribute('data-item-id');
     this.carToBeEdited = await this.carService.get(carId);
-    window.location.href = './carForm.html';
+    window.location.href = "carForm.html";
   }
 
   async deleteCar(li) {

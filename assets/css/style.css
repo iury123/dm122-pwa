@@ -58,18 +58,22 @@ li > span {
   bottom: 10px;
   z-index: 20;
   box-shadow: 0 1px 3px rgba(0,0,0,.2);
-
 }
 
 main > ul {
   margin-bottom: 70px;
 }
 
-#save-btn {
+#save-btn, #back-btn {
   margin-top: 20px;
   background-color: blueviolet;
   color: white;
   height: 40px;
   width: 100px;
   border-radius: 5px;
+}
+
+.column-widget {
+  display: flex;
+  flex-direction: column;
 }
