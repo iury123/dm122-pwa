@@ -31,8 +31,38 @@
         </nav>
       </div>
       <main class="mdl-layout__content mat-typography" style="text-align: center">
-        <ul></ul>
-        <button id="add-car">Add</button>
+
+        <div id="first-screen">
+          <ul></ul>
+          <button id="add-car">Add</button>
+        </div>
+
+        <form style="border: none; display: none;" id="second-screen">
+          <div>
+            <label>Nome:</label>
+            <input id="carName" type="text" autocomplete="off" />
+          </div>
+
+          <div>
+            <label>Fabricante:</label>
+            <input id="manufacturer" type="text" autocomplete="off" />
+          </div>
+
+          <div>
+            <label>Cor:</label>
+            <input id="color" type="text" autocomplete="off" />
+          </div>
+
+          <div>
+            <label>Ano:</label>
+            <input id="year" type="number" autocomplete="off" />
+          </div>
+          <div class="column-widget" style="align-items: center;">
+            <button id="save-btn">Salvar</button>
+            <button id="back-btn">Voltar</button>
+          </div>
+
+        </form>
       </main>
     </div>
   </div>

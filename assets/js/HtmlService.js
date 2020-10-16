@@ -17,24 +17,17 @@ export default class HtmlService {
     this.carService = carService;
     this.listCars();
 
-    const form = document.querySelector('form');
-    if (form && this.carToBeEdited) {
-      form.carName.value = this.carToBeEdited.name;
-      form.manufacturer.value = this.carToBeEdited.manufacturer;
-      form.color.value = this.carToBeEdited.color;
-      form.year.value = this.carToBeEdited.year;
-    }
-
     const btnAdd = document.getElementById("add-car");
     btnAdd?.addEventListener('click', () => {
       this.carToBeEdited = undefined;
-      window.location.href = "carForm.html";
+      document.getElementById('first-screen').style.display = 'none';
+      document.getElementById('second-screen').style.display = 'block';
     });
-
 
     const backBtn = document.getElementById("back-btn");
     backBtn?.addEventListener('click', () => {
-      setTimeout(() => window.history.back(), 1);
+      document.getElementById('second-screen').style.display = 'none';
+      document.getElementById('first-screen').style.display = 'visible';
     });
 
     const saveBtn = document.getElementById("save-btn");
@@ -55,7 +48,8 @@ export default class HtmlService {
 
   async saveCar(car) {
     this.carService.save(car);
-    setTimeout(() => window.history.back(), 1);
+    document.getElementById('second-screen').style.display = 'none';
+    document.getElementById('first-screen').style.display = 'visible';
   }
 
   async listCars() {
@@ -66,7 +60,15 @@ export default class HtmlService {
   async editCar(li) {
     const carId = +li?.getAttribute('data-item-id');
     this.carToBeEdited = await this.carService.get(carId);
-    window.location.href = "carForm.html";
+    document.getElementById('first-screen').style.display = 'none';
+    document.getElementById('second-screen').style.display = 'block';
+    const form = document.querySelector('form');
+    if (form && this.carToBeEdited) {
+      form.carName.value = this.carToBeEdited.name;
+      form.manufacturer.value = this.carToBeEdited.manufacturer;
+      form.color.value = this.carToBeEdited.color;
+      form.year.value = this.carToBeEdited.year;
+    }
   }
 
   async deleteCar(li) {
