@@ -27,7 +27,7 @@ export default class HtmlService {
     const backBtn = document.getElementById("back-btn");
     backBtn?.addEventListener('click', () => {
       document.getElementById('second-screen').style.display = 'none';
-      document.getElementById('first-screen').style.display = 'visible';
+      document.getElementById('first-screen').style.display = 'block';
     });
 
     const saveBtn = document.getElementById("save-btn");
@@ -49,7 +49,7 @@ export default class HtmlService {
   async saveCar(car) {
     this.carService.save(car);
     document.getElementById('second-screen').style.display = 'none';
-    document.getElementById('first-screen').style.display = 'visible';
+    document.getElementById('first-screen').style.display = 'block';
   }
 
   async listCars() {
