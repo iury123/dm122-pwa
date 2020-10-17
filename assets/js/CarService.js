@@ -19,7 +19,7 @@ export default class CarService {
             await db.cars.bulkPut([
                 { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Preto' },
                 { name: 'Golf', manufacturer: 'Volkswagen', year: 1995, color: 'Vermelho' },
-                { name: 'Corolla', manufacturer: 'Toyota', year: 2020, color: 'Prata' },
+                { name: 'Hilux', manufacturer: 'Toyota', year: 2014, color: 'Prata' },
             ]);
         });
     }
